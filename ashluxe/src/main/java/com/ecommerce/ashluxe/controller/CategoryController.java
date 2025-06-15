@@ -1,5 +1,6 @@
 package com.ecommerce.ashluxe.controller;
 
+import com.ecommerce.ashluxe.config.AppConstants;
 import com.ecommerce.ashluxe.model.Category;
 import com.ecommerce.ashluxe.payload.CategoryDTO;
 import com.ecommerce.ashluxe.payload.CategoryResponse;
@@ -22,8 +23,14 @@ public class CategoryController {
     private CategoryService categoryService;
 
     @GetMapping("api/public/categories")
-    public ResponseEntity<CategoryResponse> getAllCategories(){
-        CategoryResponse categoryResponse = categoryService.getAllCategories();
+    public ResponseEntity<CategoryResponse> getAllCategories(
+            @RequestParam(name = "pageNumber", defaultValue = AppConstants.DEFAULT_PAGE_NUMBER, required = false) Integer pageNumber,
+            @RequestParam(name = "pageSize", defaultValue = AppConstants.DEFAULT_PAGE_SIZE, required = false) Integer pageSize,
+            @RequestParam(name = "sortBy", defaultValue = AppConstants.DEFAULT_SORT_CATEGORIES_BY, required = false) String sortBy,
+            @RequestParam(name = "sortOrder", defaultValue = AppConstants.DEFAULT_SORT_DIR, required = false) String sortOrder
+
+    ){
+        CategoryResponse categoryResponse = categoryService.getAllCategories(pageNumber, pageSize, sortOrder, sortBy);
         return new ResponseEntity<>(categoryResponse, HttpStatus.OK) ;
     }
 

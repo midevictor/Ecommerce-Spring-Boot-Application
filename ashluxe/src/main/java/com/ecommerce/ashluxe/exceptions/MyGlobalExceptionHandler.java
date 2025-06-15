@@ -1,6 +1,7 @@
 package com.ecommerce.ashluxe.exceptions;
 
 
+import com.ecommerce.ashluxe.payload.ApiResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -29,12 +30,16 @@ public class MyGlobalExceptionHandler {
     }
 
     @ExceptionHandler(ResourceNotFoundException.class)
-    public ResponseEntity<String> myResourceNotFoundException(ResourceNotFoundException e) {
-      return new ResponseEntity<>(e.getMessage(), org.springframework.http.HttpStatus.NOT_FOUND);
+    public ResponseEntity<ApiResponse> myResourceNotFoundException(ResourceNotFoundException e) {
+        String message = e.getMessage();
+        ApiResponse apiResponse = new ApiResponse(message, false);
+      return new ResponseEntity<>(apiResponse, org.springframework.http.HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(APIException.class)
-    public  ResponseEntity<String> myAPIException(APIException e) {
-        return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+    public  ResponseEntity<ApiResponse> myAPIException(APIException e) {
+        String message = e.getMessage();
+        ApiResponse apiResponse = new ApiResponse(message, false);
+        return new ResponseEntity<>(apiResponse, HttpStatus.BAD_REQUEST);
     }
 }
