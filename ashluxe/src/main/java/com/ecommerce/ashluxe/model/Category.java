@@ -8,6 +8,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -24,37 +26,9 @@ public class Category {
     @Version
     private Long version;
 
-//    public Long getVersion() {
-//        return version;
-//    }
-//
-//    public void setVersion(Long version) {
-//        this.version = version;
-//    }
 
-//
-//    public Long getCategoryId() {
-//        return categoryId;
-//    }
-//
-//    public String getCategoryName() {
-//        return categoryName;
-//    }
-//
-//    public void setCategoryId(Long categoryId) {
-//        this.categoryId = categoryId;
-//    }
-//
-//    public void setCategoryName(String categoryName) {
-//        this.categoryName = categoryName;
-//    }
-//
-//    public Category(Long categoryId, String categoryName, Long version) {
-//        this.categoryId = categoryId;
-//        this.categoryName = categoryName;
-//        this.version = version;
-//    }
-//    public Category() {
-//        // No-arg constructor required by JPA
-//    }
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
+    private List<Product> products;
+
+
 }

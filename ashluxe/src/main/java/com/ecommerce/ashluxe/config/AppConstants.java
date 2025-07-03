@@ -5,6 +5,7 @@ public class AppConstants {
     public static final String DEFAULT_PAGE_SIZE = "50";
     public static final String DEFAULT_SORT_CATEGORIES_BY = "categoryId";
     public static final String DEFAULT_SORT_DIR = "asc";
+    public static final String DEFAULT_SORT_PRODUCTS_BY = "productId";
 //
 //    // User Roles
 //    public static final String ROLE_ADMIN = "ROLE_ADMIN";
